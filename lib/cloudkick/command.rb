@@ -1,4 +1,5 @@
 require 'commands/base'
+require 'pp'
 
 Dir["#{File.dirname(__FILE__)}/commands/*"].each { |c| require c }
 
@@ -17,6 +18,10 @@ module Cloudkick
           error e.message
         rescue Interrupt => e
           error "\n[canceled]"
+        ### you ran something without a command, but with args, like --help, -h
+        rescue NoMethodError, NameError
+          STDERR.puts "Unknown command or option:"
+          run_internal('help', args.dup)
         end
       end
 
