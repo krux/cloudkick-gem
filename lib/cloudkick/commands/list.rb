@@ -1,4 +1,5 @@
 require 'tempfile'
+#require 'json'
 require 'pp'
 
 module Cloudkick::Command
@@ -8,11 +9,10 @@ module Cloudkick::Command
             ### defaults to 'nil', which is safe to pass
             query   = extract_option('--query')
             full    = extract_option('--full')
-            json    = extract_option('--json')
+            #json    = extract_option('--json')
             
             if args.size > 0
-                raise CommandFailed, 'usage: cloudkick list [--query <query>] \
-                    [--full] [--json]'
+                raise CommandFailed, 'usage: cloudkick list [--query <query>] [--full]'
             end
 
             if full 
