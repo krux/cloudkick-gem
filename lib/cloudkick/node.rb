@@ -17,11 +17,11 @@ require 'uri'
 module Cloudkick
   class Node < Base
 
-    attr_reader :agent_state, :color, :id, :ipaddress, :name
+    attr_reader :agent_state, :color, :id, :ipaddress, :name, :as_hash
     attr_reader :provider_id, :provider_name, :status, :tags
 
     def initialize(agent_state, color, id, ipaddress, name,
-                   provider_id, provider_name, status, tags)
+                   provider_id, provider_name, status, tags, hash)
       @agent_state = agent_state
       @color = color
       @id = id
@@ -31,6 +31,7 @@ module Cloudkick
       @provider_name = provider_name
       @status = status
       @tags = tags
+      @as_hash = hash
     end
 
     def check(type=nil)
@@ -65,7 +66,7 @@ module Cloudkick
       nodes = hash.map do |node|
         Node.new(node['agent_state'], node['color'], node['id'],
                  node['ipaddress'], node['name'], node['provider_id'],
-                 node['provider_name'], node['status'], node['tags'])
+                 node['provider_name'], node['status'], node['tags'], node)
       end
     end
 
