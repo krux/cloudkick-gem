@@ -36,6 +36,9 @@ module Cloudkick::Command
         '<command> ' \
         '[--username <username>] ',
         'parallel ssh your nodes'
+        group.command 'list [--query <query>] ' \
+        '[--full]',
+        'list information about your nodes'
       end
     end
 
