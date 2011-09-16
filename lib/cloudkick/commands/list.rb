@@ -23,8 +23,10 @@ module Cloudkick::Command
                 printf( fmt, "# Name", "IP" )            
             end
 
-            client.get('nodes', query).each do |node|
+            list = client.get('nodes', query).nodes
 
+            ### sort the output by name
+            list.sort { |x,y| x.name <=> y.name }.each do |node|
                 if full
                     printf( fmt, 
                         node.name, node.ipaddress,
