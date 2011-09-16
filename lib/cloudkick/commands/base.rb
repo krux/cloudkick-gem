@@ -15,6 +15,13 @@ module Cloudkick::Command
       end
     end
     
+    ### there doesn't seem to be a ruby library that does this
+    ### well, so we're just using this now =/ See here:
+    ### http://xrl.us/RubyWhich (Link to stackoverflow.com)
+    def command?( cmd )
+       system("which #{cmd} > /dev/null 2>&1")
+    end
+    
     def client
       if !@client
         key, secret = credentials
