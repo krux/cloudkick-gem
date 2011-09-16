@@ -19,8 +19,8 @@ module Cloudkick
         rescue Interrupt => e
           error "\n[canceled]"
         ### you ran something without a command, but with args, like --help, -h
-        rescue NoMethodError, NameError
-          STDERR.puts "Unknown command or option:"
+        rescue NoMethodError, NameError => e
+          STDERR.puts "Unknown command or option: #{e}"
           run_internal('help', args.dup)
         end
       end
