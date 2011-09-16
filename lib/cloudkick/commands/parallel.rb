@@ -74,7 +74,7 @@ module Cloudkick::Command
   class Pscp < Parallel
     def index
       unless args.size > 0
-        raise CommandFailed, 'usage: cloudkick pssh --query <query> ' \
+        raise CommandFailed, 'usage: cloudkick pscp --query <query> ' \
         '[--username <username>] [--timeout INT] [--prefer-ip] <local> <remote>'
       end
 

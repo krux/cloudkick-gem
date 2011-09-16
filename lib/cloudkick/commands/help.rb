@@ -30,14 +30,15 @@ module Cloudkick::Command
 
     def self.create_default_groups!
       group 'Commands' do |group|
-        group.command 'help',                               'show this usage'
+        group.command 'help', 'show this usage'
         group.space
-        group.command 'pssh --query <query> ' \
-        '<command> ' \
-        '[--username <username>] ',
-        'parallel ssh your nodes'
-        group.command 'list [--query <query>] ' \
-        '[--full]',
+        group.command 'pssh --query <query> [--username <username>] ' \
+        '[--timeout INT] [--prefer-ip] <command>', 
+        'parallel ssh to your nodes'
+        group.command 'pscp --query <query> [--username <username>] ' \
+        '[--timeout INT] [--prefer-ip] <local> <remote>',
+        'parallel scp to your nodes'
+        group.command 'list [--query <query>] [--full]',
         'list information about your nodes'
       end
     end
