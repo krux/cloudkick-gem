@@ -48,6 +48,7 @@ module Cloudkick::Command
       prefer_ip = extract_option('--prefer-ip')
       command   = args.last.strip rescue nil
 
+
       ### what binary to use
       fallback  = 'pssh'
       bins      = [ 'parallel-ssh', fallback ]
@@ -57,7 +58,7 @@ module Cloudkick::Command
       file      = host_list( query, username, prefer_ip )
 
       ### the shell out command
-      to_run    = "#{bin} --inline --timeout=#{timeout} --hosts=#{file.path} #{command}"
+      to_run    = "#{bin} --inline --timeout=#{timeout} --hosts=#{file.path} '#{command}'"
 
       begin
         system( to_run )
