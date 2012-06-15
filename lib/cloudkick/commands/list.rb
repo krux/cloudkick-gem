@@ -16,10 +16,10 @@ module Cloudkick::Command
       end
 
       if full 
-        fmt = "%-15s %-15s %-12s %-16s\n" 
+        fmt = "%-30s %-15s %-12s %-16s\n" 
         printf( fmt, "# Name", "IP", "Type", "Zone" )
       else 
-        fmt = "%-15s %-15s\n"        
+        fmt = "%-30s %-15s\n"        
         printf( fmt, "# Name", "IP" )      
       end
 
@@ -28,10 +28,12 @@ module Cloudkick::Command
       ### sort the output by name
       list.sort { |x,y| x.name <=> y.name }.each do |node|
         if full
+          ### details MAY not be filled :(
+          details = node.as_hash['details']
           printf( fmt, 
             node.name, node.ipaddress,
-            node.as_hash['details']['instancetype'][0],
-            node.as_hash['details']['availability'][0]
+            (details['instancetype'] ? details['instancetype'][0] : 'unknown'),
+            (details['availability'] ? details['availability'][0] : 'unknown')
           )
         else
           printf( fmt, node.name, node.ipaddress )
