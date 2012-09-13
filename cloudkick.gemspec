@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
      "lib/cloudkick/commands/base.rb",
      "lib/cloudkick/commands/help.rb",
      "lib/cloudkick/commands/parallel.rb",
+     "lib/cloudkick/commands/list.rb",
      "lib/cloudkick/commands/version.rb",
      "lib/cloudkick/node.rb",
      "test/helper.rb",
